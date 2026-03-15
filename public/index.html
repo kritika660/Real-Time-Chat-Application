@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatStream - Real-Time Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Join Screen -->
+        <div id="join-screen" class="screen join-screen active">
+            <div class="glass-panel join-panel">
+                <div class="logo">
+                    <i class="fa-solid fa-comments"></i>
+                    <h1>ChatStream</h1>
+                </div>
+                <form id="join-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Enter your username" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="room">Room</label>
+                        <select id="room" required>
+                            <option value="General">General</option>
+                            <option value="Tech Talk">Tech Talk</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Random">Random</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Join Chat</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Chat Screen -->
+        <div id="chat-screen" class="screen chat-screen">
+            <div class="glass-panel chat-panel">
+                <aside class="chat-sidebar">
+                    <div class="sidebar-header">
+                        <h2><i class="fa-solid fa-comments"></i> ChatStream</h2>
+                    </div>
+                    <div class="sidebar-content">
+                        <div class="room-info">
+                            <h3><i class="fa-solid fa-hashtag"></i> <span id="room-name">Room Name</span></h3>
+                        </div>
+                        <div class="users-list-container">
+                            <h3><i class="fa-solid fa-users"></i> Users (<span id="user-count">0</span>)</h3>
+                            <ul id="users">
+                                <!-- Users list populated by JS -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sidebar-footer">
+                        <button id="leave-btn" class="btn danger-btn"><i class="fa-solid fa-right-from-bracket"></i> Leave Room</button>
+                    </div>
+                </aside>
+
+                <main class="chat-main">
+                    <div class="chat-header">
+                        <div class="mobile-toggle" id="mobile-toggle">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                        <h2>Room: <span id="mobile-room-name">General</span></h2>
+                    </div>
+                    
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Messages populated by JS -->
+                    </div>
+
+                    <div class="chat-input-container">
+                        <form id="chat-form">
+                            <input type="text" id="msg" placeholder="Type a message..." required autocomplete="off">
+                            <button type="submit" class="btn send-btn"><i class="fa-regular fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
